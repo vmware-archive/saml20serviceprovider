@@ -531,6 +531,7 @@ public final class SamlUtils {
 	}
 
 	public static String validate(String metaData) throws SamlException {
+
 		EntityDescriptorImpl md;
 		try {
 			md = parseMetaData(metaData);

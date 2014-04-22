@@ -29,7 +29,6 @@ public class IdentityProvider implements Serializable {
 	protected int id;
 	
 	@Lob 
-	@Column(name="metaData", length=4096)
 	private String metaData;
 	private String horizonUrl;
 	

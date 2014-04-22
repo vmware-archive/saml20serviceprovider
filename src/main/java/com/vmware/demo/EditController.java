@@ -76,7 +76,10 @@ public class EditController {
 		metaData = StringUtils.remove(metaData, '\n');
 		
 		try {
-			horizonUrl = SamlUtils.validate(metaData);
+            // Initialize the SAML libraries by grabbing an instance of the service
+            SamlService.getInstance();
+
+            horizonUrl = SamlUtils.validate(metaData);
 			if (null != horizonUrl) {
 				idp.setMetaData(metaData);
 				idp.setHorizonUrl(horizonUrl);

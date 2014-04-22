@@ -68,7 +68,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String createForm(HttpServletRequest request, Locale locale, Model model) {
-		if (null != request.getSession().getAttribute(ATTRIBUTE_SAML_CERTIFICATE)) {
+        if (null != request.getSession().getAttribute(ATTRIBUTE_SAML_CERTIFICATE)) {
 			model.addAttribute(ATTRIBUTE_SAML_CERTIFICATE, request.getSession().getAttribute(ATTRIBUTE_SAML_CERTIFICATE));
 		}
 		if (null != request.getSession().getAttribute(ATTRIBUTE_IDP_URI)) {
