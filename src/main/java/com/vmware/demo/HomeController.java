@@ -66,7 +66,7 @@ public class HomeController {
 	private static final String ATTRIBUTE_IDP_ID = "i";
 	private static final String ATTRIBUTE_SP_ID = "s";
 	
-	@RequestMapping(value = "/manual", method = RequestMethod.GET)
+	@RequestMapping(value = "/sso", method = RequestMethod.GET)
 	public String createForm(HttpServletRequest request, Locale locale, Model model) {
         if (null != request.getSession().getAttribute(ATTRIBUTE_SAML_CERTIFICATE)) {
 			model.addAttribute(ATTRIBUTE_SAML_CERTIFICATE, request.getSession().getAttribute(ATTRIBUTE_SAML_CERTIFICATE));
@@ -143,7 +143,7 @@ public class HomeController {
 		return metaData;
 	}
 
-	@RequestMapping(value = "/manual", method = RequestMethod.POST)
+	@RequestMapping(value = "/sso", method = RequestMethod.POST)
 	public String generateRequest(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model, String action, String SAMLResponse, String SAMLCertificate, String idpUri, String samlCert, String s, String i, String nameIdFormat, String consumeUrl) {
 		String serviceProviderId = (String) request.getSession().getAttribute(ATTRIBUTE_SP_ID);
 
