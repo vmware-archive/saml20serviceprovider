@@ -16,6 +16,7 @@ package com.vmware.demo;
 
 import java.util.Locale;
 
+import javax.net.ssl.SSLHandshakeException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -79,15 +80,23 @@ public class EditController {
             // Initialize the SAML libraries by grabbing an instance of the service
             SamlService.getInstance();
 
-            horizonUrl = SamlUtils.validate(metaData);
+            try {
+                horizonUrl = SamlUtils.validate(metaData);
+            } catch (Exception e) {
+                if (e instanceof SSLHandshakeException) {
+                    model.addAttribute(ATTRIBUTE_ERROR_MSG, e.getLocalizedMessage());
+                } else {
+                    throw e;
+                }
+            }
 			if (null != horizonUrl) {
 				idp.setMetaData(metaData);
 				idp.setHorizonUrl(horizonUrl);
 				organizationHandler.save(idp);
 			}
 		} catch (Exception e) {
-			model.addAttribute(ATTRIBUTE_ERROR_MSG, e.getLocalizedMessage());
-			return "edit";
+            model.addAttribute(ATTRIBUTE_ERROR_MSG, e.getLocalizedMessage());
+            return "edit";
 		}
 		model.addAttribute("identityProviders", organizationHandler.getAllIdentityProviders());
 		model.addAttribute("spMetaDataUsername", ListController.generateMetaData(request, "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"));

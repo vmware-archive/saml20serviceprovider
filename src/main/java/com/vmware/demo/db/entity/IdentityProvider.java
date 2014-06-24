@@ -14,6 +14,7 @@
 package com.vmware.demo.db.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +28,11 @@ public class IdentityProvider implements Serializable {
 	@Id
 	@GeneratedValue
 	protected int id;
-	
+
 	@Lob 
 	private String metaData;
 	private String horizonUrl;
+    private Date updated;
 	
 	public IdentityProvider() {
 	}
@@ -46,11 +48,16 @@ public class IdentityProvider implements Serializable {
 
 	public void setMetaData(String metaData) {
 		this.metaData = metaData;
+        updated = new Date();
 	}
 
 	public String getHorizonUrl() {
 		return horizonUrl;
 	}
+
+    public Date getUpdated() {
+        return updated;
+    }
 
 	public void setHorizonUrl(String horizonUrl) {
 		this.horizonUrl = horizonUrl;

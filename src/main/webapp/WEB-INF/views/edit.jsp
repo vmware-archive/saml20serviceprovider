@@ -17,12 +17,15 @@
 	<p class="error">${errmsg}</p>
 	<p class="success">${successmsg}</p>
 	<div class="field">
+        <c:if test="${not empty identityProvider.horizonUrl}">
+            <h1><c:out value="${identityProvider.horizonUrl}" /></h1>
+        </c:if>
+        <c:if test="${empty identityProvider.horizonUrl}">
+            <h1>New Identity Provider</h1>
+        </c:if>
 	<h1>Identity Provider</h1>
 	</div>
 	<form method="POST">
-		<h2>Identity Provider Name</h2>
-		<p><input type="text" name="horizonUrl" size="80" value="${identityProvider.horizonUrl}" /></p>
-		
 		<h2>IDP Meta Data</h2>
 		<p><textarea cols="80" rows="20" name="metaData">${identityProvider.metaData}</textarea></p>
 		<input type="hidden" name="id" value="${identityProvider.id}" />

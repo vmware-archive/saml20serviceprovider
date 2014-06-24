@@ -41,7 +41,7 @@ public class ListController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/setup", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Locale locale, Model model, String action, Integer id) {
 		logger.info("List");
 		
@@ -53,7 +53,7 @@ public class ListController {
 		model.addAttribute("spMetaDataEmail", generateMetaData(request, "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"));
 		return "list";
 	}
-	@RequestMapping(value = "/setup", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String post(HttpServletRequest request, Locale locale, Model model, String action, Integer id) {
 		logger.info("List POST");
 		

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+    This configuration starts a TomCat listening to localhost only.
+    The TomCat server only exposes the REST API and end-user UI.
+    I.e. an admin UI on port 8080/8443 is not included.
+
+    Required parameters (e.g. -port=80)
+    port         The port on which the web app and REST endpoints are available.
+
+-->
+<Server port="8005" shutdown="SHUTDOWN">
+    <Service name="Catalina">
+        <Executor maxThreads="300"
+                  minSpareThreads="50"
+                  name="tomcatThreadPool"
+                  namePrefix="tomcat-http--"/>
+        <Engine defaultHost="localhost" name="Catalina">
+            <Host appBase="webapps"
+                  autoDeploy="true"
+                  deployOnStartup="true"
+                  deployXML="true"
+                  name="localhost"
+                  unpackWARs="true">
+            </Host>
+        </Engine>
+        <Connector
+                address="127.0.0.1"
+                URIEncoding="UTF-8"
+                SSLEnabled="false"
+                acceptCount="100"
+                connectionTimeout="20000"
+                executor="tomcatThreadPool"
+                maxKeepAliveRequests="15"
+                port="${port}"
+                protocol="org.apache.coyote.http11.Http11Protocol"
+                scheme="http"/>
+    </Service>
+</Server>

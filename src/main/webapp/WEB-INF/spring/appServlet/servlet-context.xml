@@ -28,11 +28,11 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<context:component-scan base-package="com.vmware.demo" />
-	
-	
-	<bean id="dataSource"
+
+    <context:component-scan base-package="com.vmware.demo" />
+
+
+    <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
 		<property name="url" value="jdbc:hsqldb:mem:guest" />

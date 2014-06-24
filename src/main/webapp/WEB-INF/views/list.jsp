@@ -17,17 +17,18 @@
 <p class="error">${errmsg}</p>
 <p class="success">${successmsg}</p>
 <div class="field">
-<h1>Identity Providers</h1>
+<h1>Registered Identity Providers</h1>
 </div>
 <p>The following are the identity providers that are registered with this demo application.</p>
 <p>
       <c:forEach var="identityProvider" items="${requestScope.identityProviders}">
         	<a href="edit?id=${identityProvider.id}"><c:out value="${identityProvider.horizonUrl}" /></a>
-        	<a href="?action=delete&id=${identityProvider.id}"><img src="/resources/icon_delete.jpeg" /></a>
+          &nbsp;(<c:out value="${identityProvider.updated}" />)
+        	<a href="setup?action=delete&id=${identityProvider.id}"><img src="resources/icon_delete.jpeg" /></a>
         	<br/>
       </c:forEach>
 </p>
-<p><a href="edit?id=0"><img src="/resources/icon_add.jpeg" /> Add Identity Provider</a></p>
+<p><a href="edit?id=0"><img src="resources/icon_add.jpeg" /> Add Identity Provider</a></p>
 
 <div class="field">
 <h1>Horizon Setup</h1>
